@@ -1,4 +1,6 @@
 import sys
+import logger
+import logging
 #This library gives you access to python runtime details
 
 def error_message_details(error, error_detail):
@@ -7,7 +9,7 @@ def error_message_details(error, error_detail):
     error_message = "ERROR occurred in python script name [{0}] line number [{1}] error message [{2}]".format(
         file_name,exc_tb.tb_lineno, str(error) 
     )
-    return error_message
+    return error_message    
 
 
 
@@ -24,3 +26,9 @@ class CustomException(Exception):
 
 
     
+if __name__ == "__main__":
+    try:
+        a = 1/0
+    except Exception as e:
+        logging.info("Divided by 0 error")
+        raise CustomException(e,sys)
